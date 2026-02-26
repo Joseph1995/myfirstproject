@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000";
+const API_BASE = "";
 
 /** Update the percentage hint badge next to a range slider */
 function updateHint(inputId, hintId) {

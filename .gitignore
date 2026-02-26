@@ -10,6 +10,11 @@ crime_model.pkl
 # Uploaded documents (auto-generated at runtime)
 uploads/
 
+# Django
+db.sqlite3
+*.log
+staticfiles/
+
 # Virtual environments
 venv/
 .venv/
