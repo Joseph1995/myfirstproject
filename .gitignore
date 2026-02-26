@@ -7,6 +7,9 @@ __pycache__/
 # Trained model binary (auto-generated on first run)
 crime_model.pkl
 
+# Uploaded documents (auto-generated at runtime)
+uploads/
+
 # Virtual environments
 venv/
 .venv/
