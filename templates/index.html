@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Criminal Prediction System</title>
+  <link rel="stylesheet" href="{% static 'index.css' %}" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔍 Criminal Prediction System</h1>
+      <p class="subtitle">Machine-learning powered crime risk analysis</p>
+    </header>
+
+    <main>
+      <form id="predictionForm">
+        <div class="form-grid">
+
+          <!-- Time inputs -->
+          <div class="form-group">
+            <label for="hour">Hour of Day (0–23)</label>
+            <input type="number" id="hour" name="hour" min="0" max="23" value="22" required />
+          </div>
+
+          <div class="form-group">
+            <label for="day_of_week">Day of Week</label>
+            <select id="day_of_week" name="day_of_week" required>
+              <option value="0">Monday</option>
+              <option value="1">Tuesday</option>
+              <option value="2">Wednesday</option>
+              <option value="3">Thursday</option>
+              <option value="4">Friday</option>
+              <option value="5" selected>Saturday</option>
+              <option value="6">Sunday</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="month">Month</label>
+            <select id="month" name="month" required>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7" selected>July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
+
+          <!-- Location -->
+          <div class="form-group">
+            <label for="district">District</label>
+            <select id="district" name="district" required>
+              <option value="Downtown" selected>Downtown</option>
+              <option value="Northside">Northside</option>
+              <option value="Eastside">Eastside</option>
+              <option value="Westside">Westside</option>
+              <option value="Southside">Southside</option>
+              <option value="Suburbs">Suburbs</option>
+            </select>
+          </div>
+
+          <!-- Socioeconomic indicators -->
+          <div class="form-group">
+            <label for="population_density">Population Density (people/km²)</label>
+            <input type="number" id="population_density" name="population_density"
+                   min="1000" max="20000" value="15000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="poverty_rate">Poverty Rate
+              <span class="hint" id="poverty_hint">30%</span>
+            </label>
+            <input type="range" id="poverty_rate" name="poverty_rate"
+                   min="0.05" max="0.45" step="0.01" value="0.30"
+                   oninput="updateHint('poverty_rate','poverty_hint')" />
+          </div>
+
+          <div class="form-group">
+            <label for="unemployment_rate">Unemployment Rate
+              <span class="hint" id="unemployment_hint">15%</span>
+            </label>
+            <input type="range" id="unemployment_rate" name="unemployment_rate"
+                   min="0.02" max="0.20" step="0.01" value="0.15"
+                   oninput="updateHint('unemployment_rate','unemployment_hint')" />
+          </div>
+
+          <div class="form-group">
+            <label for="police_presence">Police Presence
+              <span class="hint" id="police_hint">30%</span>
+            </label>
+            <input type="range" id="police_presence" name="police_presence"
+                   min="0.1" max="1.0" step="0.05" value="0.30"
+                   oninput="updateHint('police_presence','police_hint')" />
+          </div>
+
+        </div>
+
+        <button type="submit" id="submitBtn">Predict Crime Risk</button>
+      </form>
+
+      <!-- Results -->
+      <div id="result" class="result hidden">
+        <h2>Prediction Result</h2>
+        <div class="result-primary">
+          <span class="crime-label" id="crimeName"></span>
+          <span class="confidence" id="confidence"></span>
+        </div>
+        <h3>Top Predictions</h3>
+        <ul id="topList" class="top-list"></ul>
+      </div>
+
+      <div id="errorBox" class="error hidden"></div>
+    </main>
+
+    <footer>
+      <p>Powered by a Random Forest classifier trained on synthetic crime data.</p>
+    </footer>
+  </div>
+
+  <script src="{% static 'index.js' %}"></script>
+</body>
+</html>

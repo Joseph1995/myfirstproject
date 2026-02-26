@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document Chat Assistant</title>
+  <link rel="stylesheet" href="{% static 'chat.css' %}" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ── Sidebar: document management ── -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>📚 Knowledge Base</h2>
+        <p class="sidebar-sub">Upload documents to chat with</p>
+      </div>
+
+      <!-- Upload zone -->
+      <div class="upload-zone" id="uploadZone">
+        <input
+          type="file"
+          id="fileInput"
+          multiple
+          accept=".pdf,.docx,.doc,.xlsx,.xls,.pptx,.ppt,.png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp"
+          hidden
+        />
+        <div class="upload-icon">⬆</div>
+        <p>
+          Drop files here or
+          <button class="link-btn" onclick="document.getElementById('fileInput').click()">browse</button>
+        </p>
+        <p class="upload-hint">PDF · Word · Excel · PPT · Images</p>
+      </div>
+
+      <!-- Status message -->
+      <div class="upload-status hidden" id="uploadStatus"></div>
+
+      <!-- Document list -->
+      <div class="doc-list-header">
+        <span>Uploaded Documents</span>
+        <span class="doc-count" id="docCount">0</span>
+      </div>
+      <ul class="doc-list" id="docList"></ul>
+
+      <!-- Link back to crime prediction UI -->
+      <div class="sidebar-footer">
+        <a href="/" class="back-link">← Crime Prediction System</a>
+      </div>
+    </aside>
+
+    <!-- ── Main: chat area ── -->
+    <main class="chat-area">
+      <header class="chat-header">
+        <h1>🤖 Document Chat Assistant</h1>
+        <p>Upload documents, then ask questions — answers come from your files</p>
+      </header>
+
+      <div class="messages" id="messages">
+        <div class="message assistant">
+          <div class="message-bubble">
+            👋 Hello! Upload one or more documents in the sidebar (PDF, Word, Excel, PowerPoint, or images), then ask me anything about them.
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <textarea
+          id="questionInput"
+          placeholder="Ask a question about your documents…"
+          rows="1"
+        ></textarea>
+        <button id="sendBtn" onclick="sendMessage()">Send</button>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="{% static 'chat.js' %}"></script>
+</body>
+</html>
